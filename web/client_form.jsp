@@ -72,7 +72,7 @@
                         </caption>
 
                         <c:if test="${client != null}">
-                            <input type="hidden" name="id" value="<c:out value='${client.idClient}' />" />
+                            <input type="hidden" name="idClient" value="<c:out value='${client.idClient}' />" />
                         </c:if>
 
                         <fieldset class="form-group">
@@ -84,8 +84,8 @@
                         <fieldset class="form-group">
                             <label>Sexe</label> 
                                 <div class="form-check">
-                                    <input type="radio" name="sexeClient" value="<c:out value='${masculin}' />" />Masculin  
-                                    <input type="radio" name="sexeClient" value="<c:out value='${feminin}' />"/>Feminin 
+                                    <input type="radio" name="sexeClient" value="<c:out value='masculin' />" />Masculin  
+                                    <input type="radio" name="sexeClient" value="<c:out value='feminin' />"/>Feminin 
                                 </div>
                         </fieldset>
                         <fieldset class="form-group">

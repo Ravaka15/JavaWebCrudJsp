@@ -27,7 +27,7 @@ public class ClientDAO {
     private static final String SELECT_CLIENT_BY_ID = "select * from client where idClient=?";
     private static final String SELECT_ALL_CLIENT = "select * from client";
     private static final String DELETE_CLIENT_SQL = "delete from client where idClient = ?;";
-    private static final String UPDATE_CLIENT_SQL = "update client set nomClient=?, prenomClient=? ,sexeClient=?, adresseClient=?, situationMatClient=? , telephoneClient=? , emailClient=? where idClient=?";
+    private static final String UPDATE_CLIENT_SQL = "update client set nomClient=?, prenomClient=? ,sexeClient=?, adresseClient=?, situationMatClient=? , telephoneClient=? , emailClient=? where idClient=?;";
 
 
 public ClientDAO() {}
@@ -44,6 +44,8 @@ public ClientDAO() {}
         }
         return connection;
     }
+   
+   
    ///Insertion Client
     public void insertClient(Client cli) throws SQLException {
         System.out.println(INSERT_CLIENT_SQL);
@@ -61,18 +63,20 @@ public ClientDAO() {}
             printSQLException(e);
         }
     }
+    
+    
     /// Affichage modifiction Client ty
-    public Client selectClient(int id){
+    public Client selectClient(int idClient){
         Client client = null;
         try (Connection connection = getConnection();
                 
             PreparedStatement ps = connection.prepareStatement(SELECT_CLIENT_BY_ID);) {
-            ps.setInt(1, id);
+            ps.setInt(1, idClient);
             System.out.println(ps);
             ResultSet rs = ps.executeQuery();
             
             while (rs.next()) { 
-                int idClient = rs.getInt("idClient");
+              
                 String nomClient = rs.getString("nomClient");  
                 String prenomClient =rs.getString("prenomClient");  
                 String sexeClient =rs.getString("sexeClient");  
@@ -117,26 +121,27 @@ public ClientDAO() {}
     public boolean deleteClient(int idClient) throws SQLException {
         boolean rowDeleted;
         try (Connection connection = getConnection(); 
-                PreparedStatement statement = connection.prepareStatement(DELETE_CLIENT_SQL);) {
-            statement.setInt(1, idClient);
-            rowDeleted = statement.executeUpdate() > 0;
+            PreparedStatement ps = connection.prepareStatement(DELETE_CLIENT_SQL);) {
+            ps.setInt(1, idClient);
+            rowDeleted = ps.executeUpdate() > 0;
         }
         return rowDeleted;
     }
 
     // Modification Client
-     public boolean updateClient(Client cli) throws SQLException {
+     public boolean updateClient(Client client) throws SQLException {
         boolean rowUpdated;
         try (Connection connection = getConnection(); 
             PreparedStatement ps = connection.prepareStatement(UPDATE_CLIENT_SQL);) {
-                ps.setString(1,cli.getNomClient());  
-                ps.setString(2,cli.getPrenomClient());  
-                ps.setString(3,cli.getSexeClient());  
-                ps.setString(4,cli.getAdresseClient());  
-                ps.setString(5,cli.getSituationMatClient());  
-                ps.setString(6,cli.getTelephoneClient());  
-                ps.setString(7,cli.getEmailClient()); 
-                ps.setInt(8,cli.getIdClient());
+            System.out.println("updated Client"+ps);
+                ps.setString(1,client.getNomClient());  
+                ps.setString(2,client.getPrenomClient());  
+                ps.setString(3,client.getSexeClient());  
+                ps.setString(4,client.getAdresseClient());  
+                ps.setString(5,client.getSituationMatClient());  
+                ps.setString(6,client.getTelephoneClient());  
+                ps.setString(7,client.getEmailClient()); 
+                ps.setInt(8,client.getIdClient());
 
                 rowUpdated = ps.executeUpdate() > 0;
         }

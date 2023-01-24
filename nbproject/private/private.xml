@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Bossy/L3/Projet/Vente/src/java/web/ClientServlet.java</file>
             <file>file:/D:/Bossy/L3/Projet/Vente/src/java/dao/ClientDAO.java</file>
+            <file>file:/D:/Bossy/L3/Projet/Vente/src/java/web/ClientServlet.java</file>
             <file>file:/D:/Bossy/L3/Projet/Vente/web/client_form.jsp</file>
             <file>file:/D:/Bossy/L3/Projet/Vente/web/list_Client.jsp</file>
-            <file>file:/D:/Bossy/L3/Projet/Vente/src/java/entity/Client.java</file>
         </group>
     </open-files>
 </project-private>

@@ -101,7 +101,7 @@
                                     <td>
                                         <c:out value="${client.emailClient}" />
                                     </td>
-                                    <td><a href="edit?id=<c:out value='${client.idClient}' />">Edit</a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=<c:out value='${client.idClient}' />">Delete</a></td>
+                                    <td><a href="edit?idClient=<c:out value='${client.idClient}' />">Edit</a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?idClient=<c:out value='${client.idClient}' />">Delete</a></td>
                                 </tr>
                             </c:forEach>
                             <!-- } -->

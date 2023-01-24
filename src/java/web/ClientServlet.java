@@ -7,7 +7,6 @@ package web;
 import dao.ClientDAO;
 import entity.Client;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -23,7 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/")
 public class ClientServlet extends HttpServlet {
-
+        private static final long serialVersionUID = 1L;
+        private ClientDAO clientDAO;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -33,8 +33,7 @@ public class ClientServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-//        private static final long serialVersionUID = 1 L;
-        private ClientDAO clientDAO;
+        
         @Override
         public void init() {
             clientDAO = new ClientDAO();
@@ -96,7 +95,7 @@ public class ClientServlet extends HttpServlet {
             int idClient = Integer.parseInt(request.getParameter("idClient"));
             Client existingClient = clientDAO.selectClient(idClient);
             RequestDispatcher dispatcher = request.getRequestDispatcher("client_form.jsp");
-//            request.setAttribute(client, existingClient);
+            request.setAttribute("client", existingClient);
             dispatcher.forward(request, response);
         }
         
@@ -118,7 +117,7 @@ public class ClientServlet extends HttpServlet {
         
         private void updateClient(HttpServletRequest request, HttpServletResponse response)
         throws SQLException, IOException {
-            int idClient = Integer.parseInt(request.getParameter("idClient"));
+            int  idClient = Integer.parseInt(request.getParameter("idClient"));
             String nomClient = request.getParameter("nomClient");
             String prenomClient = request.getParameter("prenomClient");
             String sexeClient = request.getParameter("sexeClient");
@@ -134,7 +133,7 @@ public class ClientServlet extends HttpServlet {
         
         private void deleteClient(HttpServletRequest request, HttpServletResponse response)
         throws SQLException, IOException {
-            int idClient = Integer.parseInt(request.getParameter("idClient"));
+            int  idClient = Integer.parseInt(request.getParameter("idClient"));
             clientDAO.deleteClient(idClient);
             response.sendRedirect("list");
         }
